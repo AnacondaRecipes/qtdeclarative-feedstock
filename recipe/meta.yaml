@@ -35,12 +35,9 @@ requirements:
     - perl
 
   host:
-    - qtbase {{ version }}
+    - qtbase-devel {{ version }}
     - qtsvg {{ version }}
     - qtshadertools {{ version }}
-    # X11 dependencies
-    - libgl-devel  # [linux]
-    - libegl-devel  # [linux]
   run_constrained:
     - qt-main >={{ version }},<7
     - qt >={{ version }},<7
@@ -50,9 +47,6 @@ test:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
-    # X11 dependencies
-    - libgl-devel  # [linux]
-    - libegl-devel  # [linux]
   files:
     - run_qt_test.sh    # [unix]
     - run_qt_test.bat   # [win]
