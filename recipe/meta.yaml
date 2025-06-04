@@ -47,6 +47,7 @@ test:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
+    - qtbase-devel
   files:
     - run_qt_test.sh    # [unix]
     - run_qt_test.bat   # [win]
