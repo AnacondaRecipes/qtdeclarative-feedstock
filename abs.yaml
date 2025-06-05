@@ -1,4 +1,4 @@
 channels:
-  - https://staging.continuum.io/prefect/fs/qtbase-feedstock/pr7/1550c51
+  - https://staging.continuum.io/prefect/fs/qtbase-feedstock/pr7/01c13ff
   - https://staging.continuum.io/prefect/fs/qtsvg-feedstock/pr3/db5fd53
   - https://staging.continuum.io/prefect/fs/qtshadertools-feedstock/pr3/a67f387
