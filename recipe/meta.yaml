@@ -1,17 +1,17 @@
 {% set name = "qtdeclarative" %}
-{% set version = "6.7.3" %}
+{% set version = "6.9.1" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://download.qt.io/archive/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
-    sha256: 937b70e441abf5bc4e50d44d26610e2714a28514acf3885cd36116cd610b9875
+  - url: https://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
+    sha256: ccb94665df0199d7ee387b965b29677c8b89cfb1782bb6f01239b1d1524cec97
     folder: {{ name }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [osx and x86_64]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -23,22 +23,24 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - pkg-config  # [unix]
-    - bison       # [linux]
-    - flex        # [linux]
-    - gperf       # [linux]
-    - jom         # [win]
-    - m2-bison    # [win]
-    - m2-flex     # [win]
-    - m2-gperf    # [win]
+    - pkg-config     # [unix]
+    - bison          # [linux]
+    - flex           # [linux]
+    - gperf          # [linux]
+    - jom            # [win]
+    - msys2-bison    # [win]
+    - msys2-flex     # [win]
+    - msys2-gperf    # [win]
     - cmake
     - ninja
     - perl
-
   host:
     - qtbase-devel {{ version }}
     - qtsvg {{ version }}
     - qtshadertools {{ version }}
+    # Vulkan support
+    - libvulkan-headers {{ libvulkan }}  # [not osx]
+    - libvulkan-loader {{ libvulkan }}   # [not osx]
   run_constrained:
     - qt-main >={{ version }},<7
     - qt >={{ version }},<7
