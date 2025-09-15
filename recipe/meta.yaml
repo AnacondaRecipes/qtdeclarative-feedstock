@@ -1,5 +1,5 @@
 {% set name = "qtdeclarative" %}
-{% set version = "6.9.1" %}
+{% set version = "6.9.2" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,11 @@ package:
 
 source:
   - url: https://download.qt.io/official_releases/qt/{{ version.rpartition('.')[0] }}/{{ version }}/submodules/{{ name }}-everywhere-src-{{ version }}.tar.xz
-    sha256: ccb94665df0199d7ee387b965b29677c8b89cfb1782bb6f01239b1d1524cec97
+    sha256: 477f2d2c0bd98916107818725e6d498206e033dfb2859c52121e01a06ac42664
     folder: {{ name }}
 
 build:
   number: 0
-  skip: True  # [osx and x86_64]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
   ignore_run_exports:
@@ -37,6 +36,7 @@ requirements:
   host:
     - qtbase-devel {{ version }}
     - qtsvg {{ version }}
+    # https://github.com/qt/qtdeclarative/blob/v6.9.2/CMakeLists.txt#L45
     - qtshadertools {{ version }}
     # Vulkan support
     - libvulkan-headers {{ libvulkan }}  # [not osx]
@@ -47,6 +47,7 @@ requirements:
 
 test:
   requires:
+    - {{ stdlib('c') }}  # [linux]
     - {{ compiler('cxx') }}
     - cmake
     - ninja
