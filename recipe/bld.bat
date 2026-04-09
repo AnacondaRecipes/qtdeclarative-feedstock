@@ -33,5 +33,13 @@ copy %LIBRARY_PREFIX%\lib\qt6\bin\qmlscene.exe %LIBRARY_PREFIX%\bin\qmlscene6.ex
 if errorlevel 1 exit 1
 copy %LIBRARY_PREFIX%\lib\qt6\bin\qmleasing.exe %LIBRARY_PREFIX%\bin\qmleasing6.exe
 if errorlevel 1 exit 1
+del %LIBRARY_PREFIX%\bin\qml6
+if errorlevel 1 exit 1
+del %LIBRARY_PREFIX%\bin\qmlpreview6
+if errorlevel 1 exit 1
+del %LIBRARY_PREFIX%\bin\qmlscene6
+if errorlevel 1 exit 1
+del %LIBRARY_PREFIX%\bin\qmleasing6
+if errorlevel 1 exit 1
 
 rd /s /q "%BUILD_DIR%" 2>nul
